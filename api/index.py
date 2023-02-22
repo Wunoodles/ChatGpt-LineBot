@@ -3,7 +3,7 @@ from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSendMessage 
-from api.chatgpt import ChatGPT
+from chatgpt import ChatGPT
 
 import os, re
 from const import *
@@ -56,7 +56,7 @@ chat_gpt: 輸入 "/啟動" 後開始聊天，輸入 "/結束" 結束聊天"""
 
 
     if event.message.text.startswith('/圖片:'):
-        prompt = event.message.text.replace('/圖片:')
+        prompt = event.message.text.replace('/圖片:','', 1)
         image_url = chatgpt.get_image(prompt)
         line_bot_api.reply_message(
             event.reply_token,
@@ -65,7 +65,7 @@ chat_gpt: 輸入 "/啟動" 後開始聊天，輸入 "/結束" 結束聊天"""
     
 
     if event.message.text.startswith('/英文校正:'):
-        prompt = event.message.text.replace('/英文校正:')
+        prompt = event.message.text.replace('/英文校正:','', 1)
         reply_msg = chatgpt.get_grammer_check(prompt)
         line_bot_api.reply_message(
             event.reply_token,
@@ -73,7 +73,7 @@ chat_gpt: 輸入 "/啟動" 後開始聊天，輸入 "/結束" 結束聊天"""
         
     
     if event.message.text.startswith('/產生程式:'):
-        lan, prompt = event.message.text.replace('/產生程式:').split('/')
+        lan, prompt = event.message.text.replace('/產生程式:','', 1).split('/')
         reply_msg = chatgpt.get_code(lan, prompt)
         line_bot_api.reply_message(
             event.reply_token,
@@ -81,7 +81,7 @@ chat_gpt: 輸入 "/啟動" 後開始聊天，輸入 "/結束" 結束聊天"""
 
 
     if event.message.text.startswith('/收集:'):
-        count, prompt = event.message.text.replace('/收集:').split('/')
+        count, prompt = event.message.text.replace('/收集:','', 1).split('/')
         reply_msg = chatgpt.get_collect_domain_paper(count, prompt)
         line_bot_api.reply_message(
             event.reply_token,
@@ -89,7 +89,7 @@ chat_gpt: 輸入 "/啟動" 後開始聊天，輸入 "/結束" 結束聊天"""
 
 
     if event.message.text.startswith('/總結:'):
-        count, prompt = event.message.text.replace('/總結:').split('/')
+        count, prompt = event.message.text.replace('/總結:','', 1).split('/')
         reply_msg = chatgpt.get_coutent_summary(count, prompt)
         line_bot_api.reply_message(
             event.reply_token,
