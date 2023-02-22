@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
@@ -109,13 +110,14 @@ chat_gpt: 輸入 "/啟動" 後開始聊天，輸入 "/結束" 結束聊天"""
         return
     
     if working_status:
-        chatgpt.add_msg(f"Human:{event.message.text}?\n")
+        
+        chatgpt.add_msg(f"Human:{event.message.text}?")
         reply_msg = chatgpt.get_response().replace("AI:", "", 1)
-        chatgpt.add_msg(f"AI:{reply_msg}\n")
+        chatgpt.add_msg(f"AI:{reply_msg}")
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=reply_msg))
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=3000)

@@ -64,7 +64,7 @@ class ChatGPT:
 
     
     def get_collect_domain_paper(self, count, prompt):
-        prompt_ = f'給我 f{count} 篇，有關 {prompt} 的文章'
+        prompt_ = f'給我 {count} 篇，有關 {prompt} 的文章'
         response = openai.Completion.create(
             model=self.model,
             prompt=prompt_,
