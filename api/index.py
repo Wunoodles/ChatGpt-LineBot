@@ -110,10 +110,9 @@ chat_gpt: 輸入 "/啟動" 後開始聊天，輸入 "/結束" 結束聊天"""
         return
     
     if working_status:
-        
-        chatgpt.add_msg(f"Human:{event.message.text}?")
+        chatgpt.add_msg("Human:{}?\n".format(event.message.text))
         reply_msg = chatgpt.get_response().replace("AI:", "", 1)
-        chatgpt.add_msg(f"AI:{reply_msg}")
+        chatgpt.add_msg("AI:{}\n".format(reply_msg))
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=reply_msg))
