@@ -7,13 +7,16 @@
   - chat_gpt: 輸入 "/啟動" 後開始聊天，輸入 "/結束" 結束聊天
 
 
-# Ngrok Install
+# Enviroment Install
 ```linux
+udo apt update
+sudo apt install python3 python3-dev python3-venv python3-pip screen
+
 curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok
 ```
 
 
-# command
+# Command
 ```
 python index.py
 ngrok http 3000
