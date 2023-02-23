@@ -16,8 +16,8 @@ curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trust
 ```
 
 # LineBot Setting
-![alt text]()
-
+![add webhook link](https://github.com/Wunoodles/ChatGpt-LineBot/blob/main/image/1.png)
+![close auto reply](https://github.com/Wunoodles/ChatGpt-LineBot/blob/main/image/2.png)
 # Command
 ```
 python index.py
